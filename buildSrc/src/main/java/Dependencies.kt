@@ -43,4 +43,8 @@ object Deps {
 
     // VB delegate
     val vbDelegate by lazy { "com.github.kirich1409:viewbindingpropertydelegate-noreflection:${Versions.vbDelegate}" }
+
+    // Glide
+    val glideCore by lazy { "com.github.bumptech.glide:glide:${Versions.glide}" }
+    val glideCompiler by lazy { "com.github.bumptech.glide:compiler:${Versions.glide}" }
 }

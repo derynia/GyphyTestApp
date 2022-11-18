@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">GyphyTestApp</string>
+    <string name="enter_text_to_search">Enter text to search</string>
+    <string name="picture">picture</string>
 </resources>

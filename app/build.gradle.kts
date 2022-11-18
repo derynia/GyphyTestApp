@@ -72,4 +72,9 @@ dependencies {
     implementation(Deps.retrofitJson)
     implementation(Deps.okHttpLogging)
     implementation(Deps.retrofitAdapter)
+
+    // UI
+    implementation(Deps.glideCore)
+    annotationProcessor(Deps.glideCompiler)
+    kapt(Deps.glideCompiler)
 }

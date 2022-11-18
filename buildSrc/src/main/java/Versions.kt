@@ -33,4 +33,6 @@ object Versions {
 
     // VB delegate
     const val vbDelegate = "1.5.6"
+
+    const val glide = "4.13.2"
 }
