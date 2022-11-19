@@ -51,6 +51,7 @@ dependencies {
     implementation(Deps.constraintLayout)
     implementation(Deps.lifeCycleExtensions)
     implementation(Deps.fragmentKtx)
+    implementation(Deps.paging)
 
     testImplementation(Deps.junit)
     androidTestImplementation(Deps.extJunit)
@@ -77,4 +78,7 @@ dependencies {
     implementation(Deps.glideCore)
     annotationProcessor(Deps.glideCompiler)
     kapt(Deps.glideCompiler)
+
+    // Security
+    implementation(Deps.security)
 }

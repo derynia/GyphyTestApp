@@ -12,6 +12,7 @@ object Deps {
     val coreKtx by lazy { "androidx.core:core-ktx:${Versions.ktx}" }
     val kotlin by lazy { "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}" }
     val coroutines by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.coroutines}" }
+    val security by lazy {"androidx.security:security-crypto:${Versions.securityVersion}"}
 
     val lifeCycleExtensions by lazy {"androidx.lifecycle:lifecycle-extensions:${Versions.lifeCycleExtensions}"}
 
@@ -21,6 +22,7 @@ object Deps {
     val materialDesign by lazy { "com.google.android.material:material:${Versions.material}" }
     val constraintLayout by lazy { "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}" }
     val fragmentKtx by lazy { "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}" }
+    val paging by lazy { "androidx.paging:paging-runtime-ktx:${Versions.paging}" }
 
     // Test
     val extJunit by lazy { "androidx.test.ext:junit:${Versions.extJunit}" }

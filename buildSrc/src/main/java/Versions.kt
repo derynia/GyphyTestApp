@@ -13,6 +13,7 @@ object Versions {
     const val jsonVersion = "2.9.0"
     const val lifeCycleExtensions = "2.2.0"
     const val hilt = "2.44"
+    const val securityVersion = "1.0.0"
 
     // design
     const val material = "1.6.1"
@@ -35,4 +36,6 @@ object Versions {
     const val vbDelegate = "1.5.6"
 
     const val glide = "4.13.2"
+
+    const val paging = "3.1.1"
 }
