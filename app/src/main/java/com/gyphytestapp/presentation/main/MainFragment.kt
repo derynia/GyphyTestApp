@@ -11,6 +11,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.paging.LoadState
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.gyphytestapp.MainViewModel
 import com.gyphytestapp.R
 import com.gyphytestapp.core.DATA_KEY
 import com.gyphytestapp.core.SEARCH_STRING_KEY
@@ -85,11 +86,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
         }
 
         lifecycleScope.launchWhenStarted {
-            viewModel.refreshAdapterEvent.collect { gifAdapter.refresh() }
-        }
-
-        lifecycleScope.launchWhenStarted {
-            viewModel.pagingData.distinctUntilChanged().collectLatest  {
+            viewModel.pagingData.distinctUntilChanged().collectLatest {
                 gifAdapter.submitData(it)
             }
         }

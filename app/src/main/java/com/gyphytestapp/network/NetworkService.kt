@@ -13,12 +13,9 @@ interface NetworkService {
         private const val OFFSET = "offset"
         private const val RATING = "rating"
         private const val LANG = "lang"
-        //private const val MAIN_HEADER = "Content-Type: application/json"
     }
 
-//    @Headers(MAIN_HEADER)
     @GET(SEARCH)
-    //"?api_key=YGHnKKBGSydS6nSt6WAoUcICWwmgCfvL&amp;q=&amp;limit=25&amp;offset=0&amp;rating=g&amp;lang=en"
     suspend fun getData(
         @Query(API_KEY) apiKey: String,
         @Query(QUERY) query: String = "",

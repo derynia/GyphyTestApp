@@ -81,6 +81,12 @@ dependencies {
     annotationProcessor(Deps.glideCompiler)
     kapt(Deps.glideCompiler)
 
+    // ROOM
+    api(Deps.roomRuntime)
+    annotationProcessor(Deps.roomCompiler)
+    kapt(Deps.roomCompiler)
+    implementation(Deps.roomCore)
+
     // Security
     implementation(Deps.security)
 }

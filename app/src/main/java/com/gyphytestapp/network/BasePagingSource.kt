@@ -4,7 +4,7 @@ import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.gyphytestapp.core.Resource
 
-class BasePagingSource<T : Any> (
+class BasePagingSource<T : Any>(
     private val sourceUseCase: IPageable<T>
 ) : PagingSource<Int, T>() {
 

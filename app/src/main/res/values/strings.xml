@@ -7,4 +7,5 @@
     <string name="wrong_server_response">Wrong server response</string>
     <string name="error_header">Error</string>
     <string name="loaded_image">Loaded image</string>
+    <string name="delete">Delete</string>
 </resources>

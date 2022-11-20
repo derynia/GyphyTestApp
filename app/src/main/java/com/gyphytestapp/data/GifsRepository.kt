@@ -56,7 +56,7 @@ class GifsRepository @Inject constructor(
                         return@withContext Resource.Success(
                             PaginationListResponseModel(
                                 result.data.pagination.count.toLong(),
-                                result.data.data
+                                result.data.data.toMutableList()
                             )
                         )
                     }

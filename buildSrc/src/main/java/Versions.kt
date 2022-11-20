@@ -38,6 +38,8 @@ object Versions {
     const val vbDelegate = "1.5.6"
 
     const val glide = "4.13.2"
-
     const val paging = "3.1.1"
+
+    // room
+    const val room = "2.4.2"
 }

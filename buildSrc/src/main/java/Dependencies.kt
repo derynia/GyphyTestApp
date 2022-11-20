@@ -16,6 +16,11 @@ object Deps {
 
     val lifeCycleExtensions by lazy {"androidx.lifecycle:lifecycle-extensions:${Versions.lifeCycleExtensions}"}
 
+    // Room
+    val roomCore by lazy { "androidx.room:room-ktx:${Versions.room}" }
+    val roomRuntime by lazy { "androidx.room:room-runtime:${Versions.room}" }
+    val roomCompiler by lazy { "androidx.room:room-compiler:${Versions.room}" }
+
     // View
     val viewBinding by lazy {"androidx.databinding:viewbinding:${Versions.viewBinding}"}
     val appCompat by lazy { "androidx.appcompat:appcompat:${Versions.appcompat}" }

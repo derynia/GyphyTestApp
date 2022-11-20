@@ -35,6 +35,6 @@ class EncryptedSharedPrefs @Inject constructor(
 
     companion object {
         private const val PREFS_NAME = "Enc"
-        private const val ACCESS_KEY = "AccesKey"
+        private const val ACCESS_KEY = "AccessKey"
     }
 }

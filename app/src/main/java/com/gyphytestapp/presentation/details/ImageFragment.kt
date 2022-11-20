@@ -7,13 +7,13 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.gyphytestapp.MainViewModel
 import com.gyphytestapp.R
 import com.gyphytestapp.core.DATA_KEY
 import com.gyphytestapp.core.SEARCH_STRING_KEY
 import com.gyphytestapp.databinding.FragmentImageBinding
 import com.gyphytestapp.network.model.Data
 import com.gyphytestapp.presentation.details.adapter.PagerAdapter
-import com.gyphytestapp.presentation.main.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -22,13 +22,17 @@ import kotlinx.coroutines.flow.distinctUntilChanged
 class ImageFragment : Fragment(R.layout.fragment_image) {
     private val binding: FragmentImageBinding by viewBinding(FragmentImageBinding::bind)
     private val viewModel: MainViewModel by activityViewModels()
-    private val pagerAdapter : PagerAdapter = PagerAdapter()
+    private val pagerAdapter: PagerAdapter = PagerAdapter { pic -> delOnClick(pic) }
     private var data: Data? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.initViews()
+    }
+
+    private fun delOnClick(pic: Data) {
+        viewModel.deleteData(pic)
     }
 
     private fun FragmentImageBinding.initViews() {
@@ -42,9 +46,6 @@ class ImageFragment : Fragment(R.layout.fragment_image) {
             it.getParcelable<Data>(DATA_KEY).let { bundleData ->
                 data = bundleData
             }
-        }
-        pagerAdapter.addLoadStateListener {
-
         }
     }
 
@@ -62,7 +63,7 @@ class ImageFragment : Fragment(R.layout.fragment_image) {
         }
 
         lifecycleScope.launchWhenStarted {
-            viewModel.pagingData.distinctUntilChanged().collectLatest  {
+            viewModel.pagingData.distinctUntilChanged().collectLatest {
                 pagerAdapter.submitData(it)
             }
         }

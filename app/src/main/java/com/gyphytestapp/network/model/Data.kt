@@ -10,8 +10,7 @@ data class Data(
     constructor(parcel: Parcel) : this(
         parcel.readString(),
         parcel.readParcelable(Images::class.java.classLoader)
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id)

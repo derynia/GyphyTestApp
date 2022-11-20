@@ -4,6 +4,9 @@ import android.content.Context
 import androidx.annotation.StringRes
 import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.gyphytestapp.data.EncryptedSharedPrefs
+import com.gyphytestapp.data.db.GifsAppDb
+import com.gyphytestapp.data.db.mapper.DataToLoadedMapper
+import com.gyphytestapp.data.db.repository.LoadedPicsRepository
 import com.gyphytestapp.network.NetworkService
 import dagger.Module
 import dagger.Provides
@@ -65,7 +68,7 @@ object MainModule {
     ) {
         private val circularProgressDrawable = CircularProgressDrawable(context)
 
-        fun getIndicator() : CircularProgressDrawable {
+        fun getIndicator(): CircularProgressDrawable {
             circularProgressDrawable.strokeWidth = 5f
             circularProgressDrawable.centerRadius = 30f
             circularProgressDrawable.start()
@@ -86,23 +89,15 @@ object MainModule {
     @Provides
     fun providesMainDispatcher(): CoroutineDispatcher = Dispatchers.Main
 
-//    @Provides
-//    @Singleton
-//    fun getDatabase(@ApplicationContext context: Context): FuncraftDb = FuncraftDb.getInstance(context)
-//
-//    @Provides
-//    @Singleton
-//    fun provideServersRepository(funcraftDb: FuncraftDb) = ServersRepo(funcraftDb)
-//
-//    @Provides
-//    @Singleton
-//    fun provideCategoriesRepository(funcraftDb: FuncraftDb) = CategoriesRepo(funcraftDb)
-//
-//    @Provides
-//    @Singleton
-//    fun provideCommonDataRepository(funcraftDb: FuncraftDb) =
-//        CommonDataRepo(funcraftDb)
+    @Provides
+    @Singleton
+    fun getDatabase(@ApplicationContext context: Context): GifsAppDb =
+        GifsAppDb.getInstance(context)
 
+    @Provides
+    @Singleton
+    fun provideDbRepository(gifsAppDb: GifsAppDb) =
+        LoadedPicsRepository(gifsAppDb, DataToLoadedMapper())
 }
 
 @Retention(AnnotationRetention.BINARY)

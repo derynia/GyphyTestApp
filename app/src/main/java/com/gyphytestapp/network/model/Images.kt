@@ -10,8 +10,7 @@ data class Images(
     constructor(parcel: Parcel) : this(
         parcel.readParcelable(Original::class.java.classLoader),
         parcel.readParcelable(PreviewWebp::class.java.classLoader)
-    ) {
-    }
+    )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeParcelable(original, flags)
