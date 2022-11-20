@@ -4,8 +4,8 @@ import com.gyphytestapp.R
 import com.gyphytestapp.core.Resource
 import com.gyphytestapp.di.IoDispatcher
 import com.gyphytestapp.di.MainModule
-import com.gyphytestapp.model_o.Data
-import com.gyphytestapp.model_o.GifResponse
+import com.gyphytestapp.network.model.Data
+import com.gyphytestapp.network.model.GifResponse
 import com.gyphytestapp.network.NetworkService
 import com.gyphytestapp.network.PaginationListResponseModel
 import kotlinx.coroutines.CoroutineDispatcher
@@ -41,24 +41,28 @@ class GifsRepository @Inject constructor(
             val accessKey = encryptedSharedPrefs.accessKey
                 ?: return@withContext Resource.Error(resourcesProvider.getString(R.string.api_key_not_set))
 
-            val result: Resource<GifResponse> = getResultFromResponse(
-                networkService.getData(
-                    apiKey = accessKey,
-                    query = searchString,
-                    offset = offset.toString(),
-                    limit = perPage.toString()
-                )
-            )
-
-            if (result is Resource.Success) {
-                result.data?.let {
-                    return@withContext Resource.Success(
-                        PaginationListResponseModel(
-                            result.data.pagination.count.toLong(),
-                            result.data.data
-                        )
+            try {
+                val result: Resource<GifResponse> = getResultFromResponse(
+                    networkService.getData(
+                        apiKey = accessKey,
+                        query = searchString,
+                        offset = offset.toString(),
+                        limit = perPage.toString()
                     )
+                )
+
+                if (result is Resource.Success) {
+                    result.data?.let {
+                        return@withContext Resource.Success(
+                            PaginationListResponseModel(
+                                result.data.pagination.count.toLong(),
+                                result.data.data
+                            )
+                        )
+                    }
                 }
+            } catch (ex: Exception) {
+                return@withContext Resource.Error(defaultMessage)
             }
 
             Resource.Error(resourcesProvider.getString(R.string.api_key_not_set))

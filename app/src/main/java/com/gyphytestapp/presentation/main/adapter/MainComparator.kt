@@ -1,7 +1,7 @@
 package com.gyphytestapp.presentation.main.adapter
 
 import androidx.recyclerview.widget.DiffUtil
-import com.gyphytestapp.model_o.Data
+import com.gyphytestapp.network.model.Data
 
 class MainComparator : DiffUtil.ItemCallback<Data>() {
     override fun areItemsTheSame(oldItem: Data, newItem: Data) = oldItem.id == newItem.id

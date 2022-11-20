@@ -2,7 +2,7 @@ package com.gyphytestapp.network.usecase
 
 import com.gyphytestapp.core.Resource
 import com.gyphytestapp.data.GifsRepository
-import com.gyphytestapp.model_o.Data
+import com.gyphytestapp.network.model.Data
 import com.gyphytestapp.network.IPageable
 import com.gyphytestapp.network.PaginationListResponseModel
 import javax.inject.Inject

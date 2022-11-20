@@ -1,4 +1,4 @@
-package com.gyphytestapp.model
+package com.gyphytestapp.network.model
 
 data class Pagination(
     val count: Int,

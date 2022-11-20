@@ -1,4 +1,4 @@
-package com.gyphytestapp.model_o
+package com.gyphytestapp.network.model
 
 data class GifResponse(
     val data: List<Data>,

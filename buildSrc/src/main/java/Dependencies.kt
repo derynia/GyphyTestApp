@@ -23,6 +23,8 @@ object Deps {
     val constraintLayout by lazy { "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}" }
     val fragmentKtx by lazy { "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}" }
     val paging by lazy { "androidx.paging:paging-runtime-ktx:${Versions.paging}" }
+    val progressIndicator by lazy { "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.progressIndicator}" }
+    val viewPager2 by lazy { "androidx.viewpager2:viewpager2:${Versions.viewPager2}" }
 
     // Test
     val extJunit by lazy { "androidx.test.ext:junit:${Versions.extJunit}" }

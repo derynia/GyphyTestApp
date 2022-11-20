@@ -2,45 +2,59 @@ package com.gyphytestapp.presentation.main
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.gyphytestapp.core.Resource
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
+import androidx.paging.cachedIn
+import com.gyphytestapp.network.BasePagingSource
 import com.gyphytestapp.data.EncryptedSharedPrefs
-import com.gyphytestapp.data.GifsRepository
-import com.gyphytestapp.state.MainFragmentState
+import com.gyphytestapp.network.model.Data
+import com.gyphytestapp.network.usecase.GifsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val encryptedSharedPrefs: EncryptedSharedPrefs,
-    private val gifsRepository: GifsRepository
+    private val useCase: GifsUseCase
 ): ViewModel() {
-    private val gifsData = MutableStateFlow(MainFragmentState())
-    val gifs: StateFlow<MainFragmentState> = gifsData
+    private val mutableRefreshAdapterEvent : MutableSharedFlow<Unit> = MutableSharedFlow(
+        replay = 0,
+        extraBufferCapacity = 1,
+        onBufferOverflow = BufferOverflow.SUSPEND
+    )
 
-    fun fetchData(searchString: String) {
-        if (encryptedSharedPrefs.accessKey == null || searchString.isEmpty()) {
-            return
-        }
+    val refreshAdapterEvent: Flow<Unit> = mutableRefreshAdapterEvent
 
-        gifsData.update { it.copy(isLoading = true) }
+    private var mutablePagingData: Flow<PagingData<Data>> = newPagerInstance()
 
+    val pagingData: Flow<PagingData<Data>> = mutablePagingData
+
+    init {
+        useCase.setSearchString("")
+    }
+
+    private fun invalidate() {
+        mutablePagingData = newPagerInstance()
         viewModelScope.launch {
-            when (val result = gifsRepository.getGifs(searchString = searchString)) {
-                is Resource.Success -> gifsData.update {
-                    it.copy(isSuccessful = true, dataList = result.data)
-                }
-                else -> gifsData.update {
-                    it.copy(errorMessage = result.message)
-                }
-            }
+            mutableRefreshAdapterEvent.emit(Unit)
         }
     }
 
-    fun networkErrorsShown() = gifsData.update { it.copy(isLoading = false, errorMessage = null) }
+    private fun newPagerInstance() = Pager(
+        config = PagingConfig(pageSize = useCase.perPage.toInt(), enablePlaceholders = false),
+        pagingSourceFactory = { BasePagingSource(useCase) }
+    ).flow.cachedIn(viewModelScope)
+
+    fun fetchData(searchString: String) {
+        if (encryptedSharedPrefs.accessKey == null || searchString.isEmpty()) return
+
+        useCase.setSearchString(searchString)
+        invalidate()
+    }
 
     fun getApiKey() = encryptedSharedPrefs.accessKey
 

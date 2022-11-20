@@ -2,6 +2,7 @@ package com.gyphytestapp.di
 
 import android.content.Context
 import androidx.annotation.StringRes
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
 import com.gyphytestapp.data.EncryptedSharedPrefs
 import com.gyphytestapp.network.NetworkService
 import dagger.Module
@@ -56,6 +57,20 @@ object MainModule {
     ) {
         fun getString(@StringRes stringResId: Int): String {
             return context.getString(stringResId)
+        }
+    }
+
+    class ProgressIndicator @Inject constructor(
+        @ApplicationContext private val context: Context
+    ) {
+        private val circularProgressDrawable = CircularProgressDrawable(context)
+
+        fun getIndicator() : CircularProgressDrawable {
+            circularProgressDrawable.strokeWidth = 5f
+            circularProgressDrawable.centerRadius = 30f
+            circularProgressDrawable.start()
+
+            return circularProgressDrawable
         }
     }
 

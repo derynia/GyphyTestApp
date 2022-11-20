@@ -1,6 +1,6 @@
 package com.gyphytestapp.network
 
-import com.gyphytestapp.model_o.GifResponse
+import com.gyphytestapp.network.model.GifResponse
 import retrofit2.Response
 import retrofit2.http.*
 

@@ -2,13 +2,13 @@ package com.gyphytestapp.presentation.main.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.ListAdapter
+import androidx.paging.PagingDataAdapter
 import com.gyphytestapp.databinding.GifsListItemBinding
-import com.gyphytestapp.model_o.Data
+import com.gyphytestapp.network.model.Data
 
 class MainAdapter(
     private val onItemClick : (Data) -> Unit
-) : ListAdapter<Data, MainViewHolder>(MainComparator()) {
+) : PagingDataAdapter<Data, MainViewHolder>(MainComparator()) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         val binding = GifsListItemBinding.inflate(
             LayoutInflater.from(parent.context),
@@ -19,7 +19,8 @@ class MainAdapter(
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
-        val data = getItem(position)
-        holder.bind(data, onItemClick)
+        getItem(position)?.let {
+            holder.bind(it, onItemClick)
+        }
     }
 }

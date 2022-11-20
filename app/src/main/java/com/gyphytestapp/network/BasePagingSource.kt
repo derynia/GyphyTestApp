@@ -1,8 +1,8 @@
-package com.gyphytestapp.core
+package com.gyphytestapp.network
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
-import com.gyphytestapp.network.IPageable
+import com.gyphytestapp.core.Resource
 
 class BasePagingSource<T : Any> (
     private val sourceUseCase: IPageable<T>
@@ -25,7 +25,9 @@ class BasePagingSource<T : Any> (
                     nextKey = if (loadedData.isEmpty()) null else page + 1
                 )
             }
-            else -> LoadResult.Error(LoadPageException())
+            else -> LoadResult.Error(
+                LoadPageException()
+            )
         }
     }
 

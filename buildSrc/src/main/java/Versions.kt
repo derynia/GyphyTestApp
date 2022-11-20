@@ -4,6 +4,7 @@ object Versions {
     const val extJunit = "1.1.3"
     const val espresso = "3.4.0"
     const val jUnitRunner = "1.4.0"
+    const val viewPager2 = "1.0.0"
 
     // Core
     const val ktx = "1.8.0"
@@ -18,6 +19,7 @@ object Versions {
     // design
     const val material = "1.6.1"
     const val constraintLayout = "2.1.4"
+    const val progressIndicator = "1.1.0"
 
     // fragment
     const val fragmentKtx = "1.5.3"

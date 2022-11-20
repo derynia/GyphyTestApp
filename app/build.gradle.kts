@@ -11,7 +11,7 @@ android {
     buildToolsVersion = ConfigData.buildToolsVersion
 
     defaultConfig {
-        applicationId = "com.requestum.base"
+        applicationId = "com.gyphytestapp"
         minSdk = ConfigData.minSdkVersion
         targetSdk = ConfigData.targetSdkVersion
         versionCode = ConfigData.versionCode
@@ -52,6 +52,8 @@ dependencies {
     implementation(Deps.lifeCycleExtensions)
     implementation(Deps.fragmentKtx)
     implementation(Deps.paging)
+    implementation(Deps.progressIndicator)
+    implementation(Deps.viewPager2)
 
     testImplementation(Deps.junit)
     androidTestImplementation(Deps.extJunit)

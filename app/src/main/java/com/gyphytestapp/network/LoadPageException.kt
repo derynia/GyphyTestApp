@@ -1,4 +1,4 @@
-package com.gyphytestapp.core
+package com.gyphytestapp.network
 
 class LoadPageException : Exception() {
     override val message: String
