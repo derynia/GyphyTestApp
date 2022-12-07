@@ -1,4 +1,4 @@
-Test app created as a job apply tesk task
+Test app created as a job apply tesk
 
 The task was create an app which cna browse gif animations from Giphy.
 
