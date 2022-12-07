@@ -1,6 +1,6 @@
 Test app created as a job apply tesk
 
-The task was create an app which cna browse gif animations from Giphy.
+The task was create an app which can browse gif animations from Giphy.
 
 App contains main screen which loads gif animations using Giphy API by entered keyword.
 On click on a picture we switch to screen where this gis is shown with possibility to scroll
